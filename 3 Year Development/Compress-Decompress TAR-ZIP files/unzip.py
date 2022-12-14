@@ -21,7 +21,7 @@ offset = cd_offset
 for i in range(0, records):
     compressed_size, uncompressed_size = struct.unpack('<II', data[offset+20:offset+20+8])
     filename_len, extra_len, comment_len = struct.unpack('<HHH', data[offset+28:offset+28+6])
-    #print(filename_len, extra_len, comment_len)
+    # print(filename_len, extra_len, comment_len)
     data_offset, = struct.unpack('<I', data[offset+42:offset+42+4])
     local_filename_len, local_extra_len = struct.unpack('<HH', data[data_offset+26:data_offset+26+4])
     record_data_offset = data_offset + 30 + local_filename_len + local_extra_len
