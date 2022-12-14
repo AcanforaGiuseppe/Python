@@ -11,7 +11,7 @@ while offset < len(data):
     offset += 512
     print(header[124:124+11])
     size = int(header[124:124+11], 8)
-    aligned_size = (size // 512) * 512 
+    aligned_size = (size // 512) * 512
     if size % 512 != 0:
         aligned_size += 512
     content = data[offset:offset+size]
