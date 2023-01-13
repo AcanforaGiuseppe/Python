@@ -5,6 +5,7 @@ import time
 import random
 import hashlib
 
+
 class Server:
 
     def __init__(self, address, port, max_packet_size=512):
@@ -25,10 +26,10 @@ class Server:
                 self.check_challenge(packet, sender)
                 continue
             if sender in self.known_clients:
-                # TODO process message
+                # todo process message
                 continue
-            
-            # new client
+
+            # New client
             if len(packet) != 4:
                 self.blacklist_client(sender)
                 continue
@@ -36,8 +37,8 @@ class Server:
             client_first_challenge, = struct.unpack('i', packet[0:4])
 
             if client_first_challenge < 0 or client_first_challenge > 99999:
-                 self.blacklist_client(sender)
-                 continue
+                self.blacklist_client(sender)
+                continue
 
             self.send_challenge(client_first_challenge, sender)
 
@@ -60,13 +61,12 @@ class Server:
             self.blacklist_client(sender)
             return
         self.known_clients[sender] = True
-        print('Welcome client', sender)
+        print('Welcome client:', sender)
 
     def blacklist_client(self, client_address):
-        print('blacklisted', client_address)
+        print('Blacklisted:', client_address)
         self.blacklisted_clients[client_address] = time.time()
 
-            
 
 if __name__ == '__main__':
     server = Server(sys.argv[1], int(sys.argv[2]))
