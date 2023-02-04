@@ -1,1 +1,1 @@
-Python Script working as "Server-Side" for allowing users from clients to connect with Unity 3D Engine
+Python Script working as "Server-Side", allowing users from external clients to connect with Unity 3D Engine, where the client script is available
